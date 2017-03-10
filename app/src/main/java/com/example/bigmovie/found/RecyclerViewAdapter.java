@@ -111,6 +111,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             Picasso.with(context).load(datalist.get(position).getThumbnail_pic_s()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(myViewHolder2.img_title1);
             Picasso.with(context).load(datalist.get(position).getThumbnail_pic_s02()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(myViewHolder2.img_title2);
             Picasso.with(context).load(datalist.get(position).getThumbnail_pic_s03()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(myViewHolder2.img_title3);
+
+            myViewHolder2.tv_shoucang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyControll myControll=new MyControll(context);
+                    myControll.shoucang(datalist.get(position).getTitle(),datalist.get(position).getThumbnail_pic_s());
+
+                    Toast.makeText(context,"这条新闻已经收藏好了",Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
 
@@ -134,11 +144,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     class MyViewHolder2 extends RecyclerView.ViewHolder{
-        TextView tv_title;
+        TextView tv_title,tv_shoucang;
         ImageView img_title1,img_title2,img_title3;
         public MyViewHolder2(View itemView) {
             super(itemView);
             tv_title= (TextView) itemView.findViewById(R.id.tv_title);
+            tv_shoucang= (TextView) itemView.findViewById(R.id.tv_shoucang);
             img_title1= (ImageView) itemView.findViewById(R.id.img_title1);
             img_title2= (ImageView) itemView.findViewById(R.id.img_title2);
             img_title3= (ImageView) itemView.findViewById(R.id.img_title3);
