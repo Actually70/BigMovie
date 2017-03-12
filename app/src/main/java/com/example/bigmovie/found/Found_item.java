@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.bigmovie.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -113,7 +114,7 @@ public class Found_item extends Fragment {
                 List<MyNowData.ResultBean.DataBean> datalist=response.body().getResult().getData();
                 //判断什么时候刷新
                 if (isupdate){//如果是true
-                    recyclerViewAdapter.updateList(datalist);
+                    recyclerViewAdapter.updateList((ArrayList<MyNowData.ResultBean.DataBean>) datalist);
                     //当加载成功后收起（隐藏）进度条
                     refreshLayout.setRefreshing(false);
                 }else {//是false

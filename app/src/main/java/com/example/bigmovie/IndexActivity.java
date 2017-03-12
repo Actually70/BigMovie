@@ -4,13 +4,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.bigmovie.found.MyAdapter;
 import com.example.bigmovie.found.Found_item;
+import com.example.bigmovie.found.MyAdapter;
 import com.example.bigmovie.index.ImageHandler;
 import com.example.bigmovie.index.IndexActivity_item_1;
 import com.example.bigmovie.index.MyIndexPagerAdapter;
@@ -25,6 +27,8 @@ public class IndexActivity  extends BaseActivity implements View.OnClickListener
     private TextView[] tv_=new TextView[4];
     private SharedUtil sharedUtil;
     private ImageView img_new_1;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
 
     private int p;
 
@@ -48,7 +52,43 @@ public class IndexActivity  extends BaseActivity implements View.OnClickListener
 
         viewList=new ArrayList<>();
 
+        toolbar= (Toolbar) findViewById(R.id.toolbar);
+//        drawerLayout= (DrawerLayout) findViewById(R.id.drawerlayout);
         viewPager= (ViewPager) findViewById(R.id.viewPager);
+
+        toolbar.setLogo(R.mipmap.ic_launcher);//图标
+        toolbar.setTitle("标题");
+//        toolbar.setSubtitle("子标题");
+//        toolbar.setNavigationIcon(R.drawable.a1);//小图标(导航栏图标)
+        toolbar.inflateMenu(R.menu.toolbar_menu);
+
+        //用ToolBar替换actionBar
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setHomeButtonEnabled(true);//设置返回键可用
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+  /*      //DrawLayout和ToolBar进行绑定设置
+        ActionBarDrawerToggle drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close){
+
+            //打开抽屉
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                Toast.makeText(IndexActivity.this,"抽屉打开了",Toast.LENGTH_SHORT).show();
+            }
+
+            //关闭抽屉
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                Toast.makeText(IndexActivity.this,"抽屉关闭了",Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        drawerToggle.syncState();//
+        drawerLayout.setDrawerListener(drawerToggle);//设置
+*/
+
 
         tv_[0]= (TextView) findViewById(R.id.tv_index);
         tv_[1]= (TextView) findViewById(R.id.tv_found);

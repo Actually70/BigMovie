@@ -46,6 +46,12 @@ public class ShouCangRecyclerAdapter extends RecyclerView.Adapter<ShouCangRecycl
         return shouCanglist.size();
     }
 
+    //更新适配器
+    public ArrayList<ShouCangData> getList(){
+        notifyDataSetChanged();
+        return shouCanglist;
+    }
+
     //内部类aa
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_title;

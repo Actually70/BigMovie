@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bigmovie.R;
 import com.example.bigmovie.found.MyNowData.ResultBean.DataBean;
@@ -20,7 +19,7 @@ import java.util.List;
  * Created by 且以白首共余生。 on 2017/3/2.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private List<DataBean> datalist;
+    private ArrayList<DataBean> datalist;
     private Context context;
 
     public RecyclerViewAdapter(Context context) {
@@ -39,13 +38,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     //更新数据
-    public void updateList(List<DataBean> datalist){
+    public void updateList(ArrayList<DataBean> datalist){
         this.datalist=datalist;
         notifyDataSetChanged();//刷新
     }
 
     //获得数据集合
-   public List<DataBean> getList(){
+   public ArrayList<DataBean> getList(){
        return datalist;
    }
 
@@ -68,17 +67,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return myViewHolder;
     }
 
-    //复写类型设置方法
-    public int getItemViewType(int position){
-        if (position%3==0){//偶数
-            return 1;
-        }else{
-            return 2;
-        }
-    }
-
-
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         //为recyclerView设置监听器
@@ -99,9 +87,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 @Override
                 public void onClick(View v) {
                     MyControll myControll=new MyControll(context);
-                    myControll.shoucang(datalist.get(position).getTitle(),datalist.get(position).getThumbnail_pic_s());
-
-                    Toast.makeText(context,"这条新闻已经收藏好了",Toast.LENGTH_SHORT).show();
+                    myControll.addNews(datalist,position,context);
                 }
             });
 
@@ -116,9 +102,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 @Override
                 public void onClick(View v) {
                     MyControll myControll=new MyControll(context);
-                    myControll.shoucang(datalist.get(position).getTitle(),datalist.get(position).getThumbnail_pic_s());
-
-                    Toast.makeText(context,"这条新闻已经收藏好了",Toast.LENGTH_SHORT).show();
+                    myControll.addNews(datalist,position,context);
                 }
             });
         }
